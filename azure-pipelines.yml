@@ -2,6 +2,9 @@
 - task: DockerInstaller@0
   inputs:
     dockerVersion: '17.09.0-ce'
+- task: TerraformInstaller@2
+  inputs:
+    terraformVersion: 'latest'
 # Build and push an image to Azure Container Registry
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
