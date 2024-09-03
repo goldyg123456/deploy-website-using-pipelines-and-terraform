@@ -1,13 +1,7 @@
 # Docker
-- task: DockerInstaller@0
-  inputs:
-    dockerVersion: '17.09.0-ce'
-- task: TerraformInstaller@2
-  inputs:
-    terraformVersion: 'latest'
+
 # Build and push an image to Azure Container Registry
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
-
 trigger:
 - master
 
@@ -26,6 +20,18 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
+- stage: InstallDependencies
+  displayName: Install Dependencies
+  jobs:
+  - job: InstallDependencies
+    displayName: Install Dependencies
+    steps:
+    - task: DockerInstaller@0
+      inputs:
+        dockerVersion: '17.09.0-ce'
+    - task: TerraformInstaller@2
+      inputs:
+        terraformVersion: 'latest'
 - stage: Build
   displayName: Build and push stage
   jobs:
